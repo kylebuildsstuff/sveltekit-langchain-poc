@@ -38,6 +38,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/typography": "^0.5.9",
 		"langchain": "^0.0.72"
 	}
 }
