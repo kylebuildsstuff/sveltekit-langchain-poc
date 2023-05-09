@@ -1,8 +1,14 @@
 <script lang="ts">
+	let input = ``;
+
 	const handleClick = async () => {
 		const url = `/api`;
 		const what = await fetch(url, {
-			method: 'POST'
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ input })
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data));
@@ -12,7 +18,7 @@
 </script>
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-	<form action="#">
+	<form on:submit|preventDefault={handleClick}>
 		<div>
 			<div class="mt-2">
 				<div
@@ -25,6 +31,7 @@
 					<label for="comment" class="sr-only">Comment</label>
 					<div>
 						<textarea
+							bind:value={input}
 							rows="5"
 							name="comment"
 							id="comment"
