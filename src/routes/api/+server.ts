@@ -3,6 +3,7 @@ import { OPENAI_API_KEY, SERPAPI_API_KEY } from '$env/static/private';
 import { OpenAI } from 'langchain/llms/openai';
 import { SerpAPI } from 'langchain/tools';
 import { initializeAgentExecutorWithOptions } from 'langchain/agents';
+import { ConsoleCallbackHandler } from 'langchain/callbacks';
 
 export const POST = async (event: RequestEvent) => {
 	const requestBody = await event.request.json();
@@ -12,7 +13,8 @@ export const POST = async (event: RequestEvent) => {
 	const model = new OpenAI({
 		openAIApiKey: OPENAI_API_KEY,
 		temperature: 0,
-		modelName: 'text-davinci-003'
+		modelName: 'text-davinci-003',
+		callbacks: [new ConsoleCallbackHandler()]
 	});
 
 	// Get your tools
