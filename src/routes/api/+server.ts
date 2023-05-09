@@ -36,7 +36,5 @@ export const POST = async (event: RequestEvent) => {
 	// Do stuff
 	const result = await executor.call({ input });
 
-	console.log(`Result: ${JSON.stringify(result, null, 2)}`);
-
 	return json({ result: result?.output || '' });
 };
